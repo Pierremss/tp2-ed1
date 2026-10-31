@@ -16,6 +16,7 @@ struct celula {
 
 struct pilha {
     struct celula *cab;
+    int n; // numero de elementos na pilha
 };
 
 Pilha* PilhaInicia() {

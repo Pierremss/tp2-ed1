@@ -12,7 +12,7 @@ bool ListaInsereInicio(Lista *pLista, Pessoa *pessoa);
 bool ListaRetiraPrimeiro(Lista *pLista, Pessoa **pPessoa);
 bool ListaEhVazia(Lista *pLista);
 int ListaTamanho(Lista *pLista);
-void ImprimirLista(Lista *pLista, Pessoa *pPessoa);
+void ImprimirLista(Lista *pLista);
 Lista* ListaLibera(Lista *pLista);
 
 #endif

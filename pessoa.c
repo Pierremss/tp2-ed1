@@ -25,7 +25,7 @@ Pessoa* criaPessoa(int id, char* nome, int idade, int estadoSaude){
     return p;
 }
 
-Pessoa* destruiPessoa(Pessoa *p){
+Pessoa* destroiPessoa(Pessoa *p){
     if(p == NULL)
         return NULL;
 
@@ -76,22 +76,21 @@ int getEstadoSaude(Pessoa *p){
     return p->estadoSaude;
 }
 
-int setEstadoSaude(Pessoa *p, int estadoSaude){
+bool setEstadoSaude(Pessoa *p, int estadoSaude){
     if(p == NULL || (estadoSaude < 0 || estadoSaude > 5))
-        return -1;
+        return false;
 
     p->estadoSaude = estadoSaude;
-    return 0;
+    return true;
 }
 
 bool quemEhMaisVelho(Pessoa *p1, Pessoa *p2){
     if(p1 == NULL || p2 == NULL)
         return false;
 
-    if (p1->idade > p2->idade){
-        return true;
-    } else if p1->idade == p2->idade {
-    
-    }
+    if (p1->idade != p2->idade) 
+        return p1->idade > p2->idade;
+        
+    return p1->id < p2->id;
 
 }
