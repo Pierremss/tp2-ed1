@@ -99,7 +99,7 @@ int ListaTamanho(Lista *pLista) {
     return pLista->n;
 }
 
-void ImprimirLista(Lista *pLista, Pessoa *pPessoa) {
+void ImprimirLista(Lista *pLista) {
     Celula *atual = pLista->cab->prox;
 
     while (atual != NULL) {

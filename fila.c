@@ -22,14 +22,14 @@ Fila* FilaInicia() {
     return pFila;
 }
 
-bool FilaEnfileira(Fila *pFila, Pessoa pessoa) {
+bool FilaEnfileira(Fila *pFila, Pessoa *pessoa) {
     if (pFila == NULL)
         return false;
 
     return ListaInsereFinal(pFila->lista, pessoa);
 }
 
-bool FilaDesenfileira(Fila *pFila, Pessoa *pPessoa) {
+bool FilaDesenfileira(Fila *pFila, Pessoa **pPessoa) {
     if (pFila == NULL)
         return false;
 

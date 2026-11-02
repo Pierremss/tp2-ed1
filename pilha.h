@@ -6,7 +6,14 @@
 
 typedef struct pilha Pilha;
 typedef struct evento Evento;
-typedef struct celula Celula;
+typedef struct celulaPilha CelulaPilha;
+
+struct evento {
+    int idPessoa;
+    int estadoAnterior; 
+    int novoEstado;
+    int diaOcorrencia;
+};
 
 Pilha* PilhaInicia();
 bool PilhaPush(Pilha *pPilha, Evento evento); //adiciona uma pessoa na pilha
@@ -19,6 +26,6 @@ int consultarIdPessoa(Evento *evento);
 int consultarEstadoAnterior(Evento *evento);
 int consultarNovoEstado(Evento *evento);
 int consultarDia(Evento *evento);
-Evento consultaTopo(Pilha *pPilha); //retorna o evento do topo da pilha sem removê-lo
+Evento consultarTopo(Pilha *pPilha); //retorna o evento do topo da pilha sem removê-lo
 
 #endif

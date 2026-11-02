@@ -2,20 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct evento {
-    int idPessoa;
-    int estadoAnterior; 
-    int novoEstado;
-    int diaOcorrencia;
-};
 
-struct celula {
+struct celulaPilha {
     Evento evento;
-    struct celula *prox;
+    struct celulaPilha *prox;
 };
 
 struct pilha {
-    struct celula *cab;
+    struct celulaPilha *cab;
     int n; // numero de elementos na pilha
 };
 
@@ -26,6 +20,7 @@ Pilha* PilhaInicia() {
         return NULL;
 
     pPilha->cab = NULL;
+    pPilha->n = 0;
 
     return pPilha;
 }
@@ -38,14 +33,14 @@ bool PilhaPush(Pilha *pPilha, Evento evento) {
     if (pPilha == NULL)
         return false;
 
-    struct celula *nova = malloc(sizeof(struct celula));
+    struct celulaPilha *nova = malloc(sizeof(struct celulaPilha));
     if (nova == NULL)
         return false;
 
     nova->evento = evento;
     nova->prox = pPilha->cab;
     pPilha->cab = nova;
-
+    pPilha->n++;
     return true;
 }
 
@@ -53,20 +48,18 @@ bool PilhaPop(Pilha *pPilha, Evento *pEvento) {
     if (pPilha == NULL || pPilha->cab == NULL)
         return false;
 
-    struct celula *aux = pPilha->cab;
+    struct celulaPilha *aux = pPilha->cab;
     *pEvento = aux->evento;
     pPilha->cab = aux->prox;
     free(aux);
-
+    pPilha->n--;
     return true;
 }
 
 
 Pilha* PilhaLibera(Pilha *pPilha) {
-    if (pPilha == NULL)
-        return NULL;
-
-    ListaLibera(pPilha->cab);
+    Evento e;
+    while (PilhaPop(pPilha, &e));
     free(pPilha);
 
     return NULL;
@@ -100,7 +93,7 @@ int consultarDia(Evento *evento) {
 
 Evento consultarTopo(Pilha *pPilha) {
     if (pPilha == NULL || pPilha->cab == NULL) {
-        Evento eventoVazio = {0, 0, 0, 0}; // Retorna um evento vazio em caso de pilha vazia
+        Evento eventoVazio = {0, 0, 0, 0}; 
         return eventoVazio;
     }
 
